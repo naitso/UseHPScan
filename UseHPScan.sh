@@ -71,11 +71,11 @@ function Resolution() {
 			exit 0
 		;;
 			* ) clear
-			echo "Choose only 'a',b,c,d' or 'q' to exit"
+			echo "Choose only 'a',b,c,d,e,f,g' or 'q' to exit"
 			sleep 2
 		esac
 
-		echo "Press ENER to return on menu"
+		echo "Press ENTER to return on menu"
 		read key
 		done
 		exit 0
@@ -108,6 +108,18 @@ function PaperSize() {
 		read RSIZE
 	
 		case "$RSIZE" in 
+			a | A )
+			COMMAND="$COMMAND --size a6"
+			FileTipe
+		;;
+			b | B )
+			COMMAND="$COMMAND --size a5"
+			FileTipe
+		;;
+			c | C )
+			COMMAND="$COMMAND --size a4"
+			FileTipe
+		;;
 			d | D )
 			COMMAND="$COMMAND --size 5x7"
 			FileTipe
@@ -117,20 +129,8 @@ function PaperSize() {
 			echo $COMMAND
 			FileTipe
 		;;
-			a | A )
-			COMMAND="$COMMAND --size a6"
-			FileTipe
-		;;
-			b | B )
-			COMMAND="$COMMAND --size a5"
-			FileTipe
-		;;
 			f | F )
 			COMMAND="$COMMAND --size letter"
-			FileTipe
-		;;
-			c | C )
-			COMMAND="$COMMAND --size a4"
 			FileTipe
 		;;
 			q | Q )
@@ -142,7 +142,7 @@ function PaperSize() {
 			sleep 2
 		esac
 	
-		echo "Press ENER to return on menu"
+		echo "Press ENTER to return on menu"
 		read key
 		done
 		exit 0
@@ -194,11 +194,11 @@ while [ RTIPE != "0" ]
 			exit 0
 		;;
 			* ) clear
-			echo "Choose only 'a,b,c,d' or 'q' to exit"
+			echo "Choose only 'a,b,c' or 'q' to exit"
 			sleep 2
 		esac
 	
-		echo "Press ENER to return on menu"
+		echo "Press ENTER to return on menu"
 		read key
 		done
 		exit 0
@@ -244,7 +244,7 @@ function ColorMode() {
 			sleep 2
 		esac
 	
-		echo "Press ENER to return on menu"
+		echo "Press ENTER to return on menu"
 		read key
 		done
 		exit 0
