@@ -17,7 +17,19 @@
 
 
 COMMAND="hp-scan"
-FILENAME=/tmp/`date +%Y-%m-%d_%H:%M:%S`
+CWD=$(pwd)
+	
+	clear
+	echo ""
+	echo "Write FILENAME and press ENTER"
+	echo "(ascii only no fancy character: a-z and - or _)"
+	echo ""
+	read NAME
+
+	# the SPACE will be replaced by -
+	FILENAME=$(echo "$NAME" | sed -e "s/ /-/g" | sed -e "s/[ \t]//g")
+
+OUTPUT=$CWD/$FILENAME
 
 function Resolution() {
 # flags: -r
@@ -172,13 +184,13 @@ while [ RTIPE != "0" ]
 	
 		case "$RTIPE" in 
 			a | A )
-			COMMAND="$COMMAND -s jpg -o $FILENAME.jpg"
+			COMMAND="$COMMAND -s jpg -o $OUTPUT.jpg"
 			echo $COMMAND
 			$COMMAND
 			exit
 		;;
 			b | B )
-			COMMAND="$COMMAND -s pdf -o $FILENAME.pdf"
+			COMMAND="$COMMAND -s pdf -o $OUTPUT.pdf"
 			echo $COMMAND
 			$COMMAND
 			exit
