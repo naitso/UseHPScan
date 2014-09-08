@@ -13,6 +13,9 @@
 #
 # Tested with my HP Laserjet M1212nf 
 # installed on slackware64 13.37
+#
+# 20140908 tested on Slackware64 14.1
+# 20140908 added ADF mode, note only pdf output is supported
 #####################################################
 
 
@@ -87,7 +90,7 @@ function Resolution() {
 			sleep 2
 		esac
 
-		echo "Press ENTER to return on menu"
+		echo "Press ENTER to return menu"
 		read key
 		done
 		exit 0
@@ -154,7 +157,7 @@ function PaperSize() {
 			sleep 2
 		esac
 	
-		echo "Press ENTER to return on menu"
+		echo "Press ENTER to return menu"
 		read key
 		done
 		exit 0
@@ -210,7 +213,7 @@ while [ RTIPE != "0" ]
 			sleep 2
 		esac
 	
-		echo "Press ENTER to return on menu"
+		echo "Press ENTER to return menu"
 		read key
 		done
 		exit 0
@@ -222,8 +225,6 @@ function ColorMode() {
 	while [ RCOLOR != "0" ]
 		do
 		clear
-		echo "HP Linux Imaging and Printing System - Scan Utility"
-		echo ""
 		echo "Choose scan color mode"
 		echo "a) gray"
 		echo "b) color"
@@ -256,12 +257,50 @@ function ColorMode() {
 			sleep 2
 		esac
 	
-		echo "Press ENTER to return on menu"
+		echo "Press ENTER to return menu"
 		read key
 		done
 		exit 0
 }
 
-ColorMode
+function InputMode() {
+	while [ RMODE != "0" ]
+	do
+		clear
+		echo "HP Linux Imaging and Printing System - Scan Utility"
+		echo ""
+		echo "Would you like to use ADF mode?"
+		echo ""
+		echo "a) YES (ONLY pdf output is supported)"
+		echo "b) NO"
+		echo "q) quit"
+		read RMODE
+
+		case "$RMODE" in
+			a | A)
+				COMMAND="$COMMAND --adf"
+				ColorMode
+		;;
+			b | B) 
+				COMMAND="$COMMAND"
+				ColorMode
+		;;
+			q | Q)
+				echo "Quit"
+				exit 0
+		;;
+			* ) clear
+			echo "Choose only 'a,b' or 'q' to exit"
+			sleep 2
+		esac
+		echo "Press ENTER to return menu"
+		read key
+	done
+	exit 0
+
+}
+
+InputMode
+#ColorMode
 
 
